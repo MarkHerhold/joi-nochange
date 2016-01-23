@@ -1,0 +1,35 @@
+{
+  "name": "joi-nochange",
+  "version": "0.1.0",
+  "description": "Adds noChange() to Joi",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint . && mocha tests/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com:MarkHerhold/joi-nochange.git"
+  },
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "keywords": [
+    "validation",
+    "change",
+    "json",
+    "PATCH"
+  ],
+  "author": "Mark Herhold",
+  "license": "MIT",
+  "dependencies": {
+    "hoek": "^3.0.4"
+  },
+  "peerDependencies": {
+    "joi": "~7.2.2"
+  },
+  "devDependencies": {
+    "chai": "3.4.1",
+    "eslint": "1.10.3",
+    "mocha": "2.3.4"
+  }
+}
