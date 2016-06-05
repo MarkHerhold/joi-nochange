@@ -17,7 +17,12 @@
     "validation",
     "change",
     "json",
-    "PATCH"
+    "PATCH",
+    "Joi"
+  ],
+  "files": [
+    "LICENSE",
+    "index.js"
   ],
   "author": "Mark Herhold",
   "license": "MIT",
