@@ -89,7 +89,7 @@ describe('noChange()', function() {
         const res = schema.validate(tmp);
         expect(res.value).to.eql(tmp);
         expect(res.value).to.not.eql(origObj);
-        expect(res.error.message).to.equal('child "cat" fails because ["id" is not allowed to change]');
+        expect(res.error.message).to.equal('child "id" fails because ["id" is not allowed to change]');
     });
 
     it('should fail to remove /meta/born', function() {
@@ -98,7 +98,7 @@ describe('noChange()', function() {
 
         const res = schema.validate(tmp);
         expect(res.value).to.not.eql(origObj);
-        expect(res.error.message).to.equal('child "cat" fails because [child "born" fails because ["born" is required]]');
+        expect(res.error.message).to.equal('child "meta" fails because [child "born" fails because ["born" is required]]');
     });
 
     it('should not notice a change when the field does not change - set /meta/born to 1452474481612', function() {
@@ -179,6 +179,6 @@ describe('readme example', function() {
             }
         };
 
-        expect(fn).to.throw('child "cat" fails because ["id" is not allowed to change]');
+        expect(fn).to.throw('child "id" fails because ["id" is not allowed to change]');
     });
 });
