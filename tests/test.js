@@ -1,7 +1,6 @@
 'use strict';
 
-var Joi = require('joi');
-require('./../index'); // monkey patch in noChange() to Joi
+var Joi = require('./../index');
 var Hoek = require('hoek');
 var expect = require('chai').expect;
 
