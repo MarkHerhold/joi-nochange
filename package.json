@@ -1,6 +1,6 @@
 {
   "name": "joi-nochange",
-  "version": "1.0.0-1",
+  "version": "1.0.0-2",
   "description": "Adds noChange() to Joi",
   "main": "index.js",
   "scripts": {
