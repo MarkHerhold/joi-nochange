@@ -24,7 +24,7 @@ function createRule(joiType) {
                 const origValue = Hoek.reach(params.q, path);
 
                 if (Hoek.deepEqual(origValue, value)) {
-                    return null; // Everything is OK
+                    return value; // Everything is OK
                 }
 
                 return this.createError(joiType + '.noChange', {
