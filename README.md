@@ -1,6 +1,6 @@
 # Joi noChange Plugin
 
-> A Joi plugin that validates the field it is attached to matches a sister object at the same path. This is extremely helpful when [validating JSON Patches](https://medium.com/@markherhold/validating-json-patch-requests-44ca5981a7fc#.e6kf262wf).
+> A [Joi](https://github.com/hapijs/joi) plugin that validates the field it is attached to matches a sister object at the same path. This is extremely helpful when [validating JSON Patches](https://medium.com/@markherhold/validating-json-patch-requests-44ca5981a7fc#.e6kf262wf).
 
 [![Build Status](https://travis-ci.org/MarkHerhold/joi-nochange.svg?branch=master)](https://travis-ci.org/MarkHerhold/joi-nochange)
 
