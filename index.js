@@ -5,34 +5,36 @@ const Hoek = require('hoek');
 
 // creates a rule for the provided base type
 function createRule(joiType) {
-    const joiBaseType = Joi[joiType];
 
-    return {
-        base: joiBaseType(),
-        name: joiType,
-        language: {
-            noChange: 'is not allowed to change' // maybe use 'may not change from {{q}}' instead?
-        },
-        rules: [{
-            name: 'noChange',
-            params: {
-                q: Joi.any()
+    return function noChange(joi) {
+        return {
+            base: joi[joiType](),
+            name: joiType,
+            language: {
+                noChange: 'is not allowed to change' // maybe use 'may not change from {{q}}' instead?
             },
-            validate(params, value, state, options) {
+            rules: [{
+                name: 'noChange',
+                params: {
+                    q: Joi.any()
+                },
+                validate(params, value, state, options) {
 
-                const path = state.path === '' ? null : state.path;
-                const origValue = Hoek.reach(params.q, path);
+                    // Joi 10.3.0+ paths are arrays
+                    const path = state.path.join('.');
+                    const origValue = Hoek.reach(params.q, path);
 
-                if (Hoek.deepEqual(origValue, value)) {
-                    return value; // Everything is OK
+                    if (Hoek.deepEqual(origValue, value)) {
+                        return value; // Everything is OK
+                    }
+
+                    return this.createError(joiType + '.noChange', {
+                        v: value//,
+                        // q: origValue
+                    }, state, options);
                 }
-
-                return this.createError(joiType + '.noChange', {
-                    v: value//,
-                    // q: origValue
-                }, state, options);
-            }
-        }]
+            }]
+        };
     };
 }
 

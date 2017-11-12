@@ -49,4 +49,13 @@ if (result.error) {
 ```
 
 ## Compatible Joi versions
-This plugin works with multiple versions of Joi. For compatibility with Joi >= 9.0.0, use version >= 1.0.0 of this plugin. For compatibility with older versions of Joi, see the `joi-pre-v9` branch of his repo (< 1.0.0).
+This plugin works with multiple versions of Joi. Compatibility chart:
+
+| **joi version** | **joi-nochange version**      |
+|-----------------|-------------------------------|
+| < 9.0.0         | < 1.0.0 (`joi-pre-v9` branch) |
+| 9.0.0 - 10.2.2  | 1.0.0 (`joi-v9` branch)       |
+| 10.3.0+         | 2.0.0 (`master` branch)       |
+
+### Finding Compatible Versions
+There is a [`find-compatible.js`](find-compatible.js) script that tests the currently checked out branch of `joi-nochange` against all versions of `joi>6`.
