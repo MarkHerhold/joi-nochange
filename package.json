@@ -4,7 +4,7 @@
   "description": "Adds noChange() to Joi",
   "main": "index.js",
   "scripts": {
-    "test": "eslint . && mocha tests/"
+    "test": "eslint index.js && mocha tests/"
   },
   "repository": {
     "type": "git",
@@ -30,12 +30,12 @@
     "hoek": "^3.0.4"
   },
   "peerDependencies": {
-    "joi": ">=9.0.0"
+    "joi": ">=10.3.0"
   },
   "devDependencies": {
     "chai": "3.4.1",
     "eslint": "1.10.3",
-    "joi": "9.0.0",
+    "joi": "12.0.0",
     "mocha": "2.3.4"
   }
 }
