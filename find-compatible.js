@@ -5,7 +5,7 @@ const MIN_VERSION = 6;
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
 
-async function f(params) {
+async function f() {
     const versionsStr = (await exec('npm view joi versions --json')).stdout;
     let versions = JSON.parse(versionsStr);
 
