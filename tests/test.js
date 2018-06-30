@@ -1,10 +1,10 @@
 'use strict';
 
-var Joi = require('./../index');
-var Hoek = require('hoek');
-var expect = require('chai').expect;
+const Joi = require('./../index')(require('joi'));
+const Hoek = require('hoek');
+const expect = require('chai').expect;
 
-var origObj = {
+const origObj = {
     id: 'k1773y',
     name: 'Cuddles',
     favoriteToys: ['string'],
@@ -15,7 +15,7 @@ var origObj = {
 };
 
 // Cat object representation schema
-var schema = Joi.object().keys({
+const schema = Joi.object().keys({
     id: Joi.string().noChange(origObj).required().label('id'),
     name: Joi.string().required().label('name'),
     description: Joi.string().optional().label('description'),
@@ -110,7 +110,7 @@ describe('noChange()', function() {
     });
 
     it('should not fix an object with different fields', function() {
-        let origObj = {
+        const origObj = {
             levelOne: {
                 levelTwo: {
                     number: 444
@@ -118,7 +118,7 @@ describe('noChange()', function() {
             }
         };
 
-        let otherObj = {
+        const otherObj = {
             levelOne: {
                 levelTwo: {
                     number: 444,
@@ -127,7 +127,7 @@ describe('noChange()', function() {
             }
         };
 
-        let schema = Joi.object().keys({
+        const schema = Joi.object().keys({
             levelOne: Joi.object().noChange(origObj).keys({
                 levelTwo: Joi.object().keys({
                     number: Joi.number().noChange(origObj)
@@ -143,7 +143,7 @@ describe('noChange()', function() {
 
 describe('readme example', function() {
     it('should work', function() {
-        var origObj = {
+        const origObj = {
             id: 'k1773y',
             name: 'Cuddles',
             favoriteToys: ['string'],
@@ -153,13 +153,13 @@ describe('readme example', function() {
             }
         };
 
-        var kitty = JSON.parse(JSON.stringify(origObj)); // clone so we can modify
+        const kitty = JSON.parse(JSON.stringify(origObj)); // clone so we can modify
 
         kitty.meta.weight += 10; // Cuddles has been eating a lot
         kitty.favoriteToys.push('catnip'); // and also likes catnip
         kitty.id = 'best-cat-ever'; // but really isn't allowed to change ids
 
-        var schema = Joi.object().keys({
+        const schema = Joi.object().keys({
             id: Joi.string().noChange(origObj).required().label('id'),
             name: Joi.string().required().label('name'),
             favoriteToys: Joi.array().items(Joi.string().label('toy')).default([]).label('favoriteToys'),
@@ -170,8 +170,8 @@ describe('readme example', function() {
         }).label('cat');
 
 
-        var fn = function() {
-            var result = schema.validate(kitty);
+        const fn = function() {
+            const result = schema.validate(kitty);
             // check and throw if there is an error (there is)
             if (result.error) {
                 throw result.error;

@@ -1,7 +1,19 @@
 'use strict';
 
-const Joi = require('joi');
 const Hoek = require('hoek');
+
+function noChangeExtend(Joi) {
+    // extend Joi
+    // due to extending any() not extending other types, number(), string(), etc. we need to extend all of these manually
+    // see https://github.com/hapijs/joi/issues/577
+    return Joi
+        .extend(createRule('any'))
+        .extend(createRule('object'))
+        .extend(createRule('number'))
+        .extend(createRule('string'))
+        .extend(createRule('date'))
+        .extend(createRule('boolean'));
+}
 
 // creates a rule for the provided base type
 function createRule(joiType) {
@@ -16,7 +28,7 @@ function createRule(joiType) {
             rules: [{
                 name: 'noChange',
                 params: {
-                    q: Joi.any()
+                    q: joi.any()
                 },
                 validate(params, value, state, options) {
 
@@ -38,13 +50,4 @@ function createRule(joiType) {
     };
 }
 
-// extend Joi and export
-// due to extending any() not extending other types, number(), string(), etc. we need to extend all of these manually
-// see https://github.com/hapijs/joi/issues/577
-module.exports = Joi
-    .extend(createRule('any'))
-    .extend(createRule('object'))
-    .extend(createRule('number'))
-    .extend(createRule('string'))
-    .extend(createRule('date'))
-    .extend(createRule('boolean'));
+module.exports = noChangeExtend;
