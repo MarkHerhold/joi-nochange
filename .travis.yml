@@ -1,6 +1,29 @@
 language: node_js
-node_js:
-  - "10"
-  - "8"
-  - "6"
-script: "npm test"
+matrix:
+  include:
+    - name: Node.js 10 with Joi v11
+      node_js: 10
+      script: |
+        npm i -D joi@11
+        npm t
+    - name: Node.js 10 with Joi v12
+      node_js: 10
+      script: |
+        npm i -D joi@12
+        npm t
+    - name: Node.js 10 with Joi v13
+      node_js: 10
+      script: |
+        npm i -D joi@13
+        npm t
+    - name: Node.js 10 with Joi v14
+      node_js: 10
+      script: |
+        npm i -D joi@14
+        npm t
+    - name: Node.js 8
+      node_js: 8
+      script: npm t
+    - name: Node.js 6
+      node_js: 8
+      script: npm t
